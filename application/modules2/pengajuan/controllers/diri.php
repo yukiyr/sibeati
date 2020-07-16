@@ -21,7 +21,4 @@ class Diri extends CI_Controller
             $this->template->load('template', 'diri/list_diri', 'Pengajuan', $data);
         }
     }
-
-    // gak pake script alert soalnya dia ga muncul (ke-redirect duluan, alert nya jadi ga muncul)
-    // tambahin alert aja kalo bisa buat dia muncul setelah redirect
 }
