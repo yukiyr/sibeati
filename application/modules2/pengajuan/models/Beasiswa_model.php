@@ -86,5 +86,11 @@ class Beasiswa_model extends CI_Model
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("beasiswa_id" => $id));
-	}
+    }
+    
+    public function getPeriode()
+    {
+        $query = $this->db->get_where('beasiswa',array('status'=>'Dibuka'));
+        return $query;
+    }
 }

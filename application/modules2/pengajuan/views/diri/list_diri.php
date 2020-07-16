@@ -235,7 +235,7 @@
                 <div class="tab-pane fade" id="cerita" role="tabpanel" aria-labelledby="cerita-tab">
                     <div class="row py-4">
                         <div class="col-12">
-                            <form>
+                            <form action="<?= site_url('pengajuan/pendaftar/save_pendaftar') ?>" role="form">
                                 <div class="card">
                                     <div class="card-body">                           
                                         <div class="form-group">
@@ -290,7 +290,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <input class="btn btn-primary btn-sm float-right" type="submit" name="save_cerita" value="Submit" />
+                                        <input class="btn btn-primary btn-sm float-right" type="submit" name="save_pendaftar" value="Submit" />
                                     </div>
                                 </div>
                             </form>

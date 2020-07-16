@@ -9,6 +9,7 @@ class Periode extends CI_Controller
         parent::__construct();
         $this->load->model("beasiswa_model");
         $this->load->library('form_validation');
+        $this->load->library('fungsi');
         $this->load->model("auth/users");
 		if($this->users->isNotLogin()) redirect(site_url('auth'));
     }
