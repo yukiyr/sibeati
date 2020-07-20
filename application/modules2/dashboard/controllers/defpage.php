@@ -26,9 +26,14 @@ class defpage extends CI_Controller {
 			if($role == 'mahasiswa'){
 				$berita = $this->load->model('Berita_model', 'berita');
 				$data['berita'] = $this->berita->getAll();
+				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
 			}
-
-			$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
+			else{
+				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
+				$data['pendaftar'] = $this->pendaftar->getAll();
+				$this->template->load('templatevoter', 'role/' . $role, 'Dashboard', $data);
+			}
+			
 		}
 		else{
 			redirect(site_url('auth'));
