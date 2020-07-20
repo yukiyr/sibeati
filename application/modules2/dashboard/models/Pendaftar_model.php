@@ -8,9 +8,10 @@ class Pendaftar_model extends CI_Model
     public $beasiswa_id;
     public $biodata_id;
 
+	// Join inner tabel pendaftar & biodata
     public function getAll()
     {
-        $this->db->select('nama_lengkap, nama_panggilan, nrp, ktp');
+        $this->db->select('nrp, nama_lengkap, penghasilan_ortu, ukt, ipk, pendaftar_id');
         $this->db->from('pendaftar');
         $this->db->join('biodata', 'biodata.biodata_id = pendaftar.biodata_id');
         $query = $this->db->get();
