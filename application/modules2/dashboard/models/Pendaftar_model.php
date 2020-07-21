@@ -8,12 +8,34 @@ class Pendaftar_model extends CI_Model
     public $beasiswa_id;
     public $biodata_id;
 
-	// Join inner tabel pendaftar & biodata
     public function getAll()
+    {
+        $this->db->select('tahun, periode, nrp, nama_lengkap, penghasilan_ortu, ukt, ipk, pendaftar_id');
+        $this->db->from('pendaftar');
+        $this->db->join('biodata', 'biodata.biodata_id = pendaftar.biodata_id');
+        $this->db->join('beasiswa', 'beasiswa.beasiswa_id = pendaftar.beasiswa_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // data yang sama cuma diambil satu (karena untuk filter)
+    public function getDistinct(){
+        $this->db->distinct();
+        $this->db->select('tahun, periode');
+        $this->db->from('pendaftar');
+        $this->db->join('beasiswa', 'beasiswa.beasiswa_id = pendaftar.beasiswa_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // query where sesuai input tahun dan periode
+    public function getWhere($tahun, $periode)
     {
         $this->db->select('nrp, nama_lengkap, penghasilan_ortu, ukt, ipk, pendaftar_id');
         $this->db->from('pendaftar');
         $this->db->join('biodata', 'biodata.biodata_id = pendaftar.biodata_id');
+        $this->db->join('beasiswa', 'beasiswa.beasiswa_id = pendaftar.beasiswa_id');
+        $this->db->where(['tahun'=>$tahun, 'periode'=>$periode]);
         $query = $this->db->get();
         return $query->result();
     }
