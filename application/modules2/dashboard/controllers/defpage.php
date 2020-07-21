@@ -28,6 +28,7 @@ class defpage extends CI_Controller {
 				$data['berita'] = $this->berita->getAll();
 				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
 			}
+			// sementara pake else, untuk role voter
 			else{
 				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
 				$data['pendaftar'] = $this->pendaftar->getAll();
