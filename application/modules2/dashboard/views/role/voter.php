@@ -5,6 +5,33 @@
 	<div class="col-md-12 col-lg-12">
 		<h1><p style="color:#092147">Pendaftar</p></h1>
 	</div>
+
+	<form role="form" method="POST">
+		<div class = "row">
+			<div class="col-md-12 col-lg-2">
+					<select class="form-control" name="tahun">
+						<?php foreach($distinct as $row)
+						{ 
+							echo '<option value="'.$row->tahun.'">'.$row->tahun.'</option>';
+						}
+						?>
+					</select>
+			</div>
+			<div class="col-md-12 col-lg-2">
+				<select class="form-control" name="periode">
+					<?php foreach($distinct as $row)
+					{ 
+						echo '<option value="'.$row->periode.'">'.$row->periode.'</option>';
+					}
+					?>
+				</select>
+			</div>			
+			<div class="col-md-12 col-lg-1">
+				<input class="btn btn-primary btn-sm float-right" id="formSubmit" type="submit" name="getRecords" value="Tampil" />
+			</div>
+		</div>
+	</form>
+	<br>
 	<!-- DataTables -->
 	<div class="card mb-3">
 		<div class="card-body">
@@ -19,10 +46,10 @@
 							<th>IPK</th>
 							<th>Aksi</th>
 							<th>Vote</th>						
-                        </tr>
+						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($pendaftar as $pendaftar): ?>
+						<?php foreach ($records as $pendaftar): ?>
 							<tr>
 								<td>
 									<?php echo $pendaftar->nrp ?>
