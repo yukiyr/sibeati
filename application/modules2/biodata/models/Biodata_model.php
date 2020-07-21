@@ -184,4 +184,11 @@ class Biodata_model extends CI_Model
         }
         print_r($this->upload->display_errors());
 	}
+	
+	    //untuk mendapatkan id biodata
+    public function getBiodata()
+    {
+        $query = $this->db->get_where('biodata',array('user_id'=> $this->session->userdata('user_id')));
+        return $query;
+    }
 }
