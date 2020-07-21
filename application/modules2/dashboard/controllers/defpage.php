@@ -28,10 +28,13 @@ class defpage extends CI_Controller {
 				$data['berita'] = $this->berita->getAll();
 				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
 			}
-			// Sementara pake else, untuk role voter
 			else{
 				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
 				$data['pendaftar'] = $this->pendaftar->getAll();
+				$data['distinct'] = $this->pendaftar->getDistinct(); //hasil hapus data yang sama
+				$tahun = $this->input->post('tahun');
+				$periode = $this->input->post('periode');
+				$data['records'] = $this->pendaftar->getWhere($tahun,$periode); //hasil filter
 				$this->template->load('templatevoter', 'role/' . $role, 'Dashboard', $data);
 			}
 			
