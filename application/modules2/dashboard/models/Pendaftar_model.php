@@ -31,7 +31,7 @@ class Pendaftar_model extends CI_Model
     // query where sesuai input tahun dan periode
     public function getWhere($tahun, $periode)
     {
-        $this->db->select('nrp, nama_lengkap, penghasilan_ortu, ukt, ipk, pendaftar_id');
+        $this->db->select('nrp, nama_lengkap, penghasilan_ortu, ukt, ipk, pendaftar_id, biodata.biodata_id, beasiswa.beasiswa_id');
         $this->db->from('pendaftar');
         $this->db->join('biodata', 'biodata.biodata_id = pendaftar.biodata_id');
         $this->db->join('beasiswa', 'beasiswa.beasiswa_id = pendaftar.beasiswa_id');
