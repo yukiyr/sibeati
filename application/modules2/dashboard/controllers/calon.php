@@ -10,25 +10,7 @@ class Calon extends CI_Controller
         $this->load->model("calon_model");
         $this->load->library('form_validation');
         $this->load->model("auth/users");
-		if($this->users->isNotLogin()) redirect(site_url('auth'));
-    }
-
-    public function adds_calon()
-    {
-        // echo 'Hello';
-        $pendaftar_id = $this->input->post('pendaftar_id');
-
-        for($i=0; $i < sizeof($pendaftar_id); $i++)
-        {
-            $data = array('pendaftar_id' => $pendaftar_id[$i]);
-            $data['user_id'] = $this->session->userdata('user_id');
-            $this->db->insert('calon',$data);
-        }
-
-        $this->session->set_flashdata('msg',"Voting Berhasil");
-        $this->session->set_flashdata('msg_class','alert-success');
-    
-        return redirect('dashboard');
+	if($this->users->isNotLogin()) redirect(site_url('auth'));
     }
 
     public function add_calon()
@@ -46,25 +28,6 @@ class Calon extends CI_Controller
             echo "<script>
             alert('Selamat, pemberian suara sukses');
             window.location='".site_url('dashboard')."';
-            </script>";
-        }
-    }
-
-    public function save_calon($beasiswaid = 0, $pendaftarid = 0){
-        $this->load->model('pendaftar_model');
-		$result = $this->pendaftar_model->save_pendaftar($beasiswaid, $biodataid);
-        if($result != 0){
-            //pendaftaran berhasil
-            echo "<script>
-            alert('Selamat, pendaftaran sukses');
-            window.location='".site_url('pengajuan/periode')."';
-            </script>";
-        }
-        else{
-            //pendaftaran gagal
-            echo "<script>
-            alert('Maaf, pendaftaran gagal');
-            window.location='".site_url('pengajuan/periode')."';
             </script>";
         }
     }
