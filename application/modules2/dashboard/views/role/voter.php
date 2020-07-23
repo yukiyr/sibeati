@@ -50,6 +50,11 @@
             }
         }
     ?>
+	
+    <div class="col-md-12 col-lg-12">
+	<p style="color:#092147">Kuota vote: <?php echo $beasiswa->kuota_vote?> </p>
+        <p style="color:#092147">Telah divote: <?php echo count($limit)?> </p>
+    </div>
 
     <!-- DataTables -->
     <form action="<?= site_url('dashboard/calon/add_calon') ?>" role="form" method="POST">
