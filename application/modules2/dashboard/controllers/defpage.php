@@ -30,7 +30,6 @@ class defpage extends CI_Controller {
 			}
 			else{
 				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
-				$calon = $this->load->model('Calon_model', 'calon');
 
 				$data['pendaftar'] = $this->pendaftar->getAll();
 				$data['distinct'] = $this->pendaftar->getDistinct(); //hasil hapus data "tahun" dan "periode" yang sama
