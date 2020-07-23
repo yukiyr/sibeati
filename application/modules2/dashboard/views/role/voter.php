@@ -31,6 +31,26 @@
 		</div>
 	</form>
 	<br>
+    <?php 
+        $items = array();
+        foreach($calon as $calon) {
+            if ($calon->user_id == $this->session->userdata('user_id'))
+            {
+                $items[] = $calon->pendaftar_id;
+            }
+        }
+    ?>
+
+    <?php 
+        $limit = array();
+        foreach($jumlah as $jumlah) {
+            if ($jumlah->user_id == $this->session->userdata('user_id'))
+            {
+                $limit[] = $jumlah->pendaftar_id;
+            }
+        }
+    ?>
+
     <!-- DataTables -->
     <form action="<?= site_url('dashboard/calon/add_calon') ?>" role="form" method="POST">
         <div class="card mb-3 mx-3">
@@ -70,7 +90,7 @@
                                         <a href="<?php echo site_url('dashboard/biodata/index/'.$pendaftar->biodata_id) ?>" role="button" class="btn btn-sm btn-primary">Detail</a>
                                     </td>
                                     <td class="table-active" style="text-align: center">
-                                            <input type="checkbox" name="pendaftar_id[]" value="<?php echo $pendaftar->pendaftar_id; ?>">
+                                        <input type="checkbox" name="pendaftar_id[]" value="<?php echo $pendaftar->pendaftar_id; ?>" <?php if($pendaftar->status == 'Ditutup' || in_array($pendaftar->pendaftar_id, $items)){echo'checked disabled';} ?>>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -79,7 +99,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <input class="btn btn-primary btn-sm float-right" type="submit" name="save_vote" value="Submit" />
+                <input class="btn btn-primary btn-sm float-right <?php echo $beasiswa->kuota_vote == count($limit) ? 'btn-secondary disabled': 'btn-primary' ?>" type="submit" name="save_vote" value="Submit" />
             </div>
         </div>
     </form>
