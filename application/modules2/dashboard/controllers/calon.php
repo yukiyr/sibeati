@@ -24,7 +24,7 @@ class Calon extends CI_Controller
         }
 
         if($result != 0){
-            //pendaftaran berhasil
+            //pemberian suara berhasil
             echo "<script>
             alert('Selamat, pemberian suara sukses');
             window.location='".site_url('dashboard')."';
