@@ -28,7 +28,7 @@ class defpage extends CI_Controller {
 				$data['berita'] = $this->berita->getAll();
 				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
 			}
-			else{
+			else if($role == 'voter'){
 				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
 
 				$data['pendaftar'] = $this->pendaftar->getAll();
@@ -40,9 +40,25 @@ class defpage extends CI_Controller {
 
 				$data['calon'] = $this->pendaftar->getCalon(); 
 				$data['beasiswa'] = $this->pendaftar->getBeasiswa();
-				$data['jumlah'] = $this->pendaftar->countVote();
+				$data['jumlah'] = $this->pendaftar->countVote(); //hitung jumlah yang sudah divote
 				
 				$this->template->load('templatevoter', 'role/' . $role, 'Dashboard', $data);
+			}
+			else{
+				$calon = $this->load->model('Calon_model', 'calon');
+
+				$data['all'] = $this->calon->getAll();
+				$data['distinct'] = $this->calon->getDistinct(); //hasil hapus data "tahun" dan "periode" yang sama
+
+				$tahun = $this->input->post('tahun');
+				$periode = $this->input->post('periode');
+				$data['records'] = $this->calon->getWhere($tahun,$periode); //hasil filter
+
+				$data['beasiswa'] = $this->calon->getBeasiswa();
+				$data['penerima'] = $this->calon->getPenerima();
+				$data['jumlah'] = $this->calon->countSelection(); //hitung jumlah yang sudah dipilih
+
+				$this->template->load('templateselektor', 'role/' . $role, 'Dashboard', $data);
 			}
 			
 		}
