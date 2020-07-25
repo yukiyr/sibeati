@@ -109,4 +109,14 @@ class Calon_model extends CI_Model
         $query = $this->db->get();
         return $result=$query->row();
     }
+	
+    // mendapatkan kuota vote
+    public function getKuota()
+    {
+        $this->db->select('kuota_vote');
+        $this->db->from('beasiswa');  
+        $this->db->where(['status'=>'Dibuka']);
+        $query = $this->db->get();
+        return $result=$query->row();
+    }
 }
