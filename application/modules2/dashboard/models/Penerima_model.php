@@ -47,4 +47,14 @@ class Penerima_model extends CI_Model
             </script>";
         }
     }
+	
+	// mendapatkan kuota beasiswa
+    public function getKuota()
+    {
+        $this->db->select('kuota_beasiswa');
+        $this->db->from('beasiswa');  
+        $this->db->where(['status'=>'Dibuka']);
+        $query = $this->db->get();
+        return $result=$query->row();
+    }
 }
